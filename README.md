@@ -4,10 +4,10 @@ A PowerShell script for Dota 2 and Counter-Strike 2. It enables Windows Game Mod
 
 ## Run from GitHub in one line
 
-Close both games first. The repository is private, so this command uses [GitHub CLI](https://cli.github.com/) signed in with `gh auth login` on your Windows PC. It fetches the script from a fixed commit.
+Close both games first. Paste this into PowerShell on Windows 11. It fetches the script from a fixed commit on GitHub and runs it as your current user.
 
 ```powershell
-& { $src = gh api --hostname github.com -H 'Accept: application/vnd.github.raw+json' 'repos/enkhee-Osiris/windows11-gaming-tweaks/contents/GamingTweaks.ps1?ref=84239e314161e5d243eef3e36b7979e6f00ffaee'; if ($LASTEXITCODE -ne 0 -or -not $src) { throw 'GitHub download failed.' }; & ([scriptblock]::Create($src -join "`n")) Apply }
+& ([scriptblock]::Create((irm -UseBasicParsing 'https://raw.githubusercontent.com/enkhee-Osiris/windows11-gaming-tweaks/84239e314161e5d243eef3e36b7979e6f00ffaee/GamingTweaks.ps1'))) Apply
 ```
 
 Add `-WhatIf` immediately after `Apply` to preview. Replace `Apply` with `Restore` to undo.
