@@ -12,7 +12,13 @@ Download or clone this repository, open PowerShell in the repository folder as y
 .\GamingTweaks.ps1 Apply
 ```
 
-Use Windows PowerShell 5.1 or PowerShell 7. If Windows flags the reviewed download as coming from the internet, you can unblock just that file with `Unblock-File -LiteralPath .\GamingTweaks.ps1`. Follow any organization policy that applies to your device.
+Use Windows PowerShell 5.1 or PowerShell 7. If PowerShell reports that running scripts is disabled on your personal PC, you can run the preview in a new process with a [session-only execution policy](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-5.1#set-a-different-policy-for-one-session).
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy RemoteSigned -File .\GamingTweaks.ps1 Apply -WhatIf
+```
+
+Use the same command without `-WhatIf` to apply. If Windows flags the reviewed download as coming from the internet, unblock just that file with `Unblock-File -LiteralPath .\GamingTweaks.ps1`.
 
 The script looks in your Steam installation and configured Steam libraries, including secondary drives. If it misses a game, provide the executable path in both the preview and the actual run. Either override can be used by itself.
 
