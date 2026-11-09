@@ -2,7 +2,17 @@
 
 A PowerShell script for Dota 2 and Counter-Strike 2. It enables Windows Game Mode and sets the Windows graphics preference to **High performance** for the two game executables it finds. The GPU preference is most useful on systems with integrated and discrete graphics, and the script preserves any specific adapter you selected. Results depend on your hardware and existing settings.
 
-## Run it
+## Run from GitHub in one line
+
+Close both games first. The repository is private, so this command uses [GitHub CLI](https://cli.github.com/) signed in with `gh auth login` on your Windows PC. It fetches the script from a fixed commit.
+
+```powershell
+& { $src = gh api --hostname github.com -H 'Accept: application/vnd.github.raw+json' 'repos/enkhee-Osiris/windows11-gaming-tweaks/contents/GamingTweaks.ps1?ref=84239e314161e5d243eef3e36b7979e6f00ffaee'; if ($LASTEXITCODE -ne 0 -or -not $src) { throw 'GitHub download failed.' }; & ([scriptblock]::Create($src -join "`n")) Apply }
+```
+
+Add `-WhatIf` immediately after `Apply` to preview. Replace `Apply` with `Restore` to undo.
+
+## Run a local copy
 
 Download or clone this repository, open PowerShell in the repository folder as your normal Windows user, and close both games. Run the preview first.
 
